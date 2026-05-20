@@ -1,30 +1,80 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/* src/index.css
+   Global styles — resets, fonts, nprogress, scrollbar theming.
+   Keep component-level styles in the component files (inline or CSS modules).
+*/
 
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap');
+
+/* ── NProgress bar ──────────────────────────────────────────────────────────── */
 #nprogress .bar {
-    background: #66ffff !important;
-    height: 3px !important;
+  background: #3b82f6 !important;
+  height: 2px !important;
 }
-
 #nprogress .spinner .spinner-icon {
-    width: 22px;
-    height: 22px;
-    border-top-color: #66ffff !important;
-    border-left-color: #66ffff !important;
+  width: 18px;
+  height: 18px;
+  border-top-color: #3b82f6 !important;
+  border-left-color: #3b82f6 !important;
 }
-
 #nprogress .spinner {
-    top: 15px;
-    left: 15px !important;
+  top: 14px;
+  right: 14px;
 }
 
+/* ── Tailwind (kept for any utility classes still in use) ───────────────────── */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html{
-    font-family: 'Poppins', sans-serif;
+/* ── Global resets ──────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-body{
-    background-color: #000000;
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
+
+body {
+  background-color: #0a0f1c;
+  color: #e2e8f0;
+  font-family: 'IBM Plex Mono', 'Fira Code', 'Cascadia Code', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar theming ───────────────────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: #0f172a; }
+::-webkit-scrollbar-thumb  { background: #1e293b; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #334155; }
+
+/* ── React Router active link helper ────────────────────────────────────────── */
+a { text-decoration: none; color: inherit; }
+
+/* ── Spin keyframe used in loading indicators ───────────────────────────────── */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── Focus ring (accessibility) ─────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* ── Toast overrides (react-toastify dark theme tweaks) ─────────────────────── */
+.Toastify__toast {
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-size: 12px !important;
+  border: 1px solid #1e293b;
+  background: #0f172a !important;
+}
+.Toastify__toast--success { border-color: #10b98155 !important; }
+.Toastify__toast--error   { border-color: #ef444455 !important; }
+.Toastify__progress-bar   { height: 2px !important; }

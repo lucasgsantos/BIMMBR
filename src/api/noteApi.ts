@@ -3,7 +3,7 @@ import { CreateNoteInput } from "../components/notes/create.note";
 import { UpdateNoteInput } from "../components/notes/update.note";
 import { INote, INoteResponse, INotesResponse } from "./types";
 
-const BASE_URL = "http://localhost:8000/api/";
+const BASE_URL = "http://localhost:3001/api/";
 
 export const noteApi = axios.create({
   baseURL: BASE_URL,
