@@ -1,7 +1,8 @@
 // src/components/layout/NavBar.tsx
-// Top navigation bar — highlights the active route automatically via NavLink.
+// Top navigation bar — highlights the active route via NavLink.
+// Add new pages to NAV_ITEMS; no other changes needed.
 
-import { FC } from 'react';
+import { CSSProperties, FC } from 'react';
 import { NavLink } from 'react-router-dom';
 
 interface NavItem {
@@ -16,92 +17,100 @@ const NAV_ITEMS: NavItem[] = [
     to: '/designer',
     label: 'MBR Designer',
     icon: '⬡',
-    description: 'Design workflows / MBRs',
+    description: 'Design Master Batch Records',
+  },
+  {
+    to: '/orders',
+    label: 'Process Orders',
+    icon: '◈',
+    description: 'Create and manage production orders',
   },
   {
     to: '/execution',
     label: 'EBR Execution',
     icon: '▶',
-    description: 'Execute production orders',
+    description: 'Execute process orders step by step',
   },
 ];
 
 const NavBar: FC = () => {
-  const base: React.CSSProperties = {
+  const baseStyle: CSSProperties = {
     display: 'flex',
     alignItems: 'center',
-    gap: 8,
-    padding: '0 18px',
+    gap: 7,
+    padding: '0 16px',
     height: '100%',
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: 600,
-    letterSpacing: '0.04em',
+    letterSpacing: '0.05em',
     textDecoration: 'none',
-    borderBottom: '3px solid transparent',
+    borderBottom: '2px solid transparent',
     transition: 'color 0.15s, border-color 0.15s',
     color: '#475569',
     whiteSpace: 'nowrap',
+    fontFamily: "'IBM Plex Mono', monospace",
   };
 
-  const active: React.CSSProperties = {
+  const activeStyle: CSSProperties = {
     color: '#e2e8f0',
     borderBottomColor: '#3b82f6',
   };
 
   return (
-    <header
-      style={{
-        height: 56,
-        background: '#0f172a',
-        borderBottom: '1px solid #1e293b',
-        display: 'flex',
-        alignItems: 'center',
-        flexShrink: 0,
-        paddingLeft: 4,
-        paddingRight: 16,
-      }}
-    >
+    <header style={{
+      height: 52,
+      background: '#0f172a',
+      borderBottom: '1px solid #1e293b',
+      display: 'flex',
+      alignItems: 'stretch',
+      flexShrink: 0,
+    }}>
       {/* Brand */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 10,
-          padding: '0 20px 0 16px',
-          marginRight: 8,
-          borderRight: '1px solid #1e293b',
-        }}
-      >
-        <span style={{ fontSize: 20, color: '#3b82f6' }}>◈</span>
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: 10,
+        padding: '0 20px', marginRight: 4,
+        borderRight: '1px solid #1e293b', flexShrink: 0,
+      }}>
+        <span style={{ fontSize: 18, color: '#3b82f6' }}>◈</span>
         <div>
-          <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', letterSpacing: '0.08em' }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: '#e2e8f0',
+            letterSpacing: '0.1em', fontFamily: "'IBM Plex Mono', monospace" }}>
             BIM
           </div>
-          <div style={{ fontSize: 9, color: '#475569', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+          <div style={{ fontSize: 8, color: '#334155', letterSpacing: '0.14em',
+            textTransform: 'uppercase', fontFamily: "'IBM Plex Mono', monospace" }}>
             MES Platform
           </div>
         </div>
       </div>
 
-      {/* Route links */}
-      <nav style={{ display: 'flex', alignItems: 'stretch', height: '100%', gap: 2 }}>
+      {/* Navigation links */}
+      <nav style={{ display: 'flex', alignItems: 'stretch', flex: 1 }}>
         {NAV_ITEMS.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
             title={item.description}
-            style={({ isActive }) => ({ ...base, ...(isActive ? active : {}) })}
+            style={({ isActive }) => ({
+              ...baseStyle,
+              ...(isActive ? activeStyle : {}),
+            })}
           >
-            <span style={{ fontSize: 15 }}>{item.icon}</span>
+            <span style={{ fontSize: 13 }}>{item.icon}</span>
             {item.label}
           </NavLink>
         ))}
       </nav>
 
-      {/* Right side status area */}
-      <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 12 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, color: '#334155' }}>
-          <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#10b981', display: 'inline-block' }} />
+      {/* Right side status indicator */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8,
+        padding: '0 18px', borderLeft: '1px solid #1e293b', flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6,
+          fontSize: 10, color: '#334155',
+          fontFamily: "'IBM Plex Mono', monospace", letterSpacing: '0.06em' }}>
+          <span style={{ width: 6, height: 6, borderRadius: '50%',
+            background: '#10b981', display: 'inline-block',
+            boxShadow: '0 0 6px #10b98188' }} />
           API Connected
         </div>
       </div>

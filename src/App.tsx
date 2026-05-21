@@ -1,11 +1,12 @@
 // src/App.tsx
-// Central route table.  All pages are mounted under the shared AppShell layout.
-// Add new routes here; never scatter <Route> declarations across the tree.
+// Central route table — the single source of truth for all pages.
+// To add a new page: import it and add one <Route> line here.
 
 import { FC } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import AppShell from './components/layout/AppShell';
 import WorkflowDesignerPage from './pages/WorkflowDesignerPage';
+import ProcessOrderPage     from './pages/ProcessOrderPage';
 import WorkflowExecutionPage from './pages/WorkflowExecutionPage';
 
 const App: FC = () => (
@@ -13,11 +14,17 @@ const App: FC = () => (
     {/* Default redirect */}
     <Route path="/" element={<Navigate to="/designer" replace />} />
 
-    {/* All authenticated pages share the AppShell (nav + main area) */}
+    {/* All pages share the AppShell (NavBar + main area via <Outlet />) */}
     <Route element={<AppShell />}>
-      <Route path="/designer"                  element={<WorkflowDesignerPage />} />
-      <Route path="/execution"                 element={<WorkflowExecutionPage />} />
-      <Route path="/execution/:workflowId"     element={<WorkflowExecutionPage />} />
+      {/* Supervisor: design MBRs */}
+      <Route path="/designer"                       element={<WorkflowDesignerPage />} />
+
+      {/* Supervisor: manage process orders */}
+      <Route path="/orders"                         element={<ProcessOrderPage />} />
+
+      {/* Operator: execute a process order step by step */}
+      <Route path="/execution"                      element={<WorkflowExecutionPage />} />
+      <Route path="/execution/:processOrderId"      element={<WorkflowExecutionPage />} />
     </Route>
 
     {/* Catch-all */}

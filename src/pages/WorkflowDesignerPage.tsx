@@ -582,10 +582,11 @@ const WorkflowDesignerPage: FC = () => {
 
           {workflowId && (
             <button
-              onClick={() => navigate(`/execution/${workflowId}`)}
+              onClick={() => navigate('/orders')}
+              title="Go to Process Orders to create an EBR for this MBR"
               style={{ padding: '6px 14px', borderRadius: 8, fontSize: 12, cursor: 'pointer',
                 background: '#f59e0b22', border: '1px solid #f59e0b66', color: '#fcd34d' }}
-            >▶ Execute EBR</button>
+            >◈ Create Order</button>
           )}
 
           <button

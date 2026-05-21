@@ -13,7 +13,7 @@ import type {
   WorkflowListParams,
 } from '../types/workflow';
 
-const BASE_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3001/api';
+const BASE_URL = import.meta.env.WEB_URL ?? 'http://localhost:3001/api';
 
 const api = axios.create({
   baseURL: BASE_URL,
