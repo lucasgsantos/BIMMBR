@@ -1,75 +1,85 @@
 // src/components/layout/NavBar.tsx
 // Top navigation bar — highlights the active route via NavLink.
-// Add new pages to NAV_ITEMS; no other changes needed.
+// To add a new page: append one entry to NAV_ITEMS.
 
 import { CSSProperties, FC } from 'react';
 import { NavLink } from 'react-router-dom';
 
 interface NavItem {
-  to: string;
-  label: string;
-  icon: string;
+  to:          string;
+  label:       string;
+  icon:        string;
   description: string;
 }
 
 const NAV_ITEMS: NavItem[] = [
   {
-    to: '/designer',
-    label: 'MBR Designer',
-    icon: '⬡',
+    to:          '/designer',
+    label:       'MBR Designer',
+    icon:        '⬡',
     description: 'Design Master Batch Records',
   },
   {
-    to: '/orders',
-    label: 'Process Orders',
-    icon: '◈',
+    to:          '/master-data',
+    label:       'Master Data',
+    icon:        '◎',
+    description: 'Materials, Locations, Batches, Handling Units',
+  },
+  {
+    to:          '/orders',
+    label:       'Process Orders',
+    icon:        '◈',
     description: 'Create and manage production orders',
   },
   {
-    to: '/execution',
-    label: 'EBR Execution',
-    icon: '▶',
+    to:          '/execution',
+    label:       'EBR Execution',
+    icon:        '▶',
     description: 'Execute process orders step by step',
   },
 ];
 
 const NavBar: FC = () => {
   const baseStyle: CSSProperties = {
-    display: 'flex',
-    alignItems: 'center',
-    gap: 7,
-    padding: '0 16px',
-    height: '100%',
-    fontSize: 12,
-    fontWeight: 600,
-    letterSpacing: '0.05em',
+    display:        'flex',
+    alignItems:     'center',
+    gap:            7,
+    padding:        '0 15px',
+    height:         '100%',
+    fontSize:       12,
+    fontWeight:     600,
+    letterSpacing:  '0.05em',
     textDecoration: 'none',
-    borderBottom: '2px solid transparent',
-    transition: 'color 0.15s, border-color 0.15s',
-    color: '#475569',
-    whiteSpace: 'nowrap',
-    fontFamily: "'IBM Plex Mono', monospace",
+    borderBottom:   '2px solid transparent',
+    transition:     'color 0.15s, border-color 0.15s',
+    color:          '#475569',
+    whiteSpace:     'nowrap',
+    fontFamily:     "'IBM Plex Mono', monospace",
   };
 
   const activeStyle: CSSProperties = {
-    color: '#e2e8f0',
+    color:             '#e2e8f0',
     borderBottomColor: '#3b82f6',
   };
 
   return (
     <header style={{
-      height: 52,
-      background: '#0f172a',
+      height:       52,
+      background:   '#0f172a',
       borderBottom: '1px solid #1e293b',
-      display: 'flex',
-      alignItems: 'stretch',
-      flexShrink: 0,
+      display:      'flex',
+      alignItems:   'stretch',
+      flexShrink:   0,
     }}>
       {/* Brand */}
       <div style={{
-        display: 'flex', alignItems: 'center', gap: 10,
-        padding: '0 20px', marginRight: 4,
-        borderRight: '1px solid #1e293b', flexShrink: 0,
+        display:     'flex',
+        alignItems:  'center',
+        gap:         10,
+        padding:     '0 18px',
+        marginRight: 4,
+        borderRight: '1px solid #1e293b',
+        flexShrink:  0,
       }}>
         <span style={{ fontSize: 18, color: '#3b82f6' }}>◈</span>
         <div>
@@ -102,9 +112,15 @@ const NavBar: FC = () => {
         ))}
       </nav>
 
-      {/* Right side status indicator */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8,
-        padding: '0 18px', borderLeft: '1px solid #1e293b', flexShrink: 0 }}>
+      {/* API status indicator */}
+      <div style={{
+        display:     'flex',
+        alignItems:  'center',
+        gap:         8,
+        padding:     '0 18px',
+        borderLeft:  '1px solid #1e293b',
+        flexShrink:  0,
+      }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6,
           fontSize: 10, color: '#334155',
           fontFamily: "'IBM Plex Mono', monospace", letterSpacing: '0.06em' }}>

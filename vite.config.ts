@@ -12,6 +12,7 @@ export default defineConfig({
   },
   server: {
     proxy: {
+      // to avoid cross-origin issues during development, we proxy API calls to the backend server.
       '/api': 'http://localhost:8001/',
     },
   },
